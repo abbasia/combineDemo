@@ -15,7 +15,6 @@ struct LoginView: View {
     var body: some View {
         VStack{
             TitleView()
-            
             HeaderImageView()
             
             UsernameField(username: $demoModel.user.username)
@@ -23,15 +22,11 @@ struct LoginView: View {
             PasswordField(password: $demoModel.user.password)
             Divider()
             
-            Button(action: {
-                self.demoModel.login()
-                
-            }) {
+            Button(action: { self.demoModel.login()}) {
                ButtonContent()
             }.padding(.vertical, 10)
             Spacer()
         }
-        
     }
 }
 
@@ -58,11 +53,10 @@ struct UsernameField: View {
     var body: some View {
         HStack(alignment: .center){
             Image("icPerson").padding(.leading, 10)
-            TextField("", text: $username)
-                  .frame(height: 35)
-                  .autocapitalization(.none)
-            //      .background(Color.red)
-                  .padding(.trailing,5)
+            TextField("username", text: $username)
+            .frame(height: 35)
+            .autocapitalization(.none)
+            .padding(.trailing,5)
         }.padding(.vertical, 5)
     }
 }
@@ -74,10 +68,10 @@ struct PasswordField: View {
         HStack(alignment: .center){
             Image("icLock").padding(.leading, 10)
                 
-            SecureField("", text: $password)
-                  .frame(height: 35)
-                  .autocapitalization(.none)
-            //      .background(Color.red)
+            SecureField("password", text: $password)
+                .frame(height: 35)
+                .autocapitalization(.none)
+
                   .padding(.trailing,5)
         }.padding(.vertical, 5)
     }
@@ -85,19 +79,6 @@ struct PasswordField: View {
 
 
 
-struct PlaceholderTextField: View {
-    let isPassword:Bool
-    var placeholder: Text
-    @Binding var text: String
-    
-    var body: some View {
-            TextField("", text: $text)
-                .frame(height: 35)
-                .autocapitalization(.none)
-          //      .background(Color.red)
-                .padding(.trailing,5)
-    }
-}
 
 struct ButtonContent: View {
     var body: some View {

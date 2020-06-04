@@ -38,11 +38,22 @@ struct Webservice {
          return URLSession.shared
             .dataTaskPublisher(for: request)
             .map({ $0.data })
+        
             .tryMap({ (data) -> Token in
+                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]  else {
+                    print("error parsing json")
+                    throw APIError.invalidJSON
+                }
+
+                let decoder = JSONDecoder()
+                let token = try decoder.decode(Token.self, from: data)
+                return token
+                /*
                 guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
                     throw APIError.invalidJSON
                 }
                 return Token( string: json["token"] as? String, type: json["token_type"] as? String )
+ */
             })
             .eraseToAnyPublisher()
          
@@ -80,9 +91,9 @@ struct LoginData: Codable {
     let email:String
     let code: String
 }
-struct Token: Codable {
-    let string:String?
-    let type:String?
+struct Token: Decodable {
+    let token:String?
+    let token_type:String?
 }
 
 enum APIError: Error {
