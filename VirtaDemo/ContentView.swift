@@ -10,20 +10,21 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @EnvironmentObject var demoModel: VirtaDemoModel
-    
+    let contentViewModel = ContentViewModel()
     var body: some View {
-        //this works
-        //demoModel.isLoggedIn ? Text("logged in"):Text("logged out")
         Group {
-            if demoModel.user.isLoggedIn {
+            LoginView()
+            /*
+            if demoModel.isLoggedIn {
                 StationListView()
             } else {
                 LoginView()
             }
+ */
         }
         
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

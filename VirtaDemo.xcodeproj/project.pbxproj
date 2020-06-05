@@ -18,6 +18,10 @@
 		157AC32D248728BB00EDAEC1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC32C248728BB00EDAEC1 /* LoginView.swift */; };
 		157AC3302487381D00EDAEC1 /* StationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC32F2487381D00EDAEC1 /* StationListView.swift */; };
 		157AC334248801C900EDAEC1 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC333248801C900EDAEC1 /* Webservice.swift */; };
+		157AC3362489B6BE00EDAEC1 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC3352489B6BE00EDAEC1 /* AppModel.swift */; };
+		157AC3392489B8F200EDAEC1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC3382489B8F200EDAEC1 /* ContentViewModel.swift */; };
+		157AC33B2489B8FE00EDAEC1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC33A2489B8FE00EDAEC1 /* LoginViewModel.swift */; };
+		157AC33D2489B91000EDAEC1 /* StationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC33C2489B91000EDAEC1 /* StationsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		157AC32C248728BB00EDAEC1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		157AC32F2487381D00EDAEC1 /* StationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListView.swift; sourceTree = "<group>"; };
 		157AC333248801C900EDAEC1 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		157AC3352489B6BE00EDAEC1 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		157AC3382489B8F200EDAEC1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		157AC33A2489B8FE00EDAEC1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		157AC33C2489B91000EDAEC1 /* StationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 		157AC30D248704AE00EDAEC1 /* VirtaDemo */ = {
 			isa = PBXGroup;
 			children = (
+				157AC3372489B8C700EDAEC1 /* ViewModels */,
 				157AC32E248728C500EDAEC1 /* Views */,
 				157AC32524870A4000EDAEC1 /* Models */,
 				157AC322248704EF00EDAEC1 /* Services */,
@@ -101,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				157AC32624870A5600EDAEC1 /* VirtaDemoModel.swift */,
+				157AC3352489B6BE00EDAEC1 /* AppModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -112,6 +122,16 @@
 				157AC32F2487381D00EDAEC1 /* StationListView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		157AC3372489B8C700EDAEC1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				157AC3382489B8F200EDAEC1 /* ContentViewModel.swift */,
+				157AC33A2489B8FE00EDAEC1 /* LoginViewModel.swift */,
+				157AC33C2489B91000EDAEC1 /* StationsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,8 +207,12 @@
 			files = (
 				157AC32D248728BB00EDAEC1 /* LoginView.swift in Sources */,
 				157AC32B2487244500EDAEC1 /* Storage.swift in Sources */,
+				157AC33B2489B8FE00EDAEC1 /* LoginViewModel.swift in Sources */,
+				157AC33D2489B91000EDAEC1 /* StationsViewModel.swift in Sources */,
 				157AC334248801C900EDAEC1 /* Webservice.swift in Sources */,
 				157AC30F248704AE00EDAEC1 /* AppDelegate.swift in Sources */,
+				157AC3392489B8F200EDAEC1 /* ContentViewModel.swift in Sources */,
+				157AC3362489B6BE00EDAEC1 /* AppModel.swift in Sources */,
 				157AC311248704AE00EDAEC1 /* SceneDelegate.swift in Sources */,
 				157AC3302487381D00EDAEC1 /* StationListView.swift in Sources */,
 				157AC32724870A5600EDAEC1 /* VirtaDemoModel.swift in Sources */,

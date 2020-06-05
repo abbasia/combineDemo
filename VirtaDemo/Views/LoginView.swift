@@ -11,20 +11,24 @@ import SwiftUI
 let titleColor = Color(red: 47/255, green: 70/255, blue: 90/255)
 
 struct LoginView: View {
-    @EnvironmentObject var demoModel: VirtaDemoModel
+    
+    @State var username = ""
+    @State var password = ""
+    
     var body: some View {
         VStack{
             TitleView()
             HeaderImageView()
             
-            UsernameField(username: $demoModel.user.username)
+            UsernameField(username: $username)
             Divider()
-            PasswordField(password: $demoModel.user.password)
+            PasswordField(password: $password)
             Divider()
             
-            Button(action: { self.demoModel.login()}) {
+            Button(action: { print("login pressed")}) {
                ButtonContent()
             }.padding(.vertical, 10)
+                
             Spacer()
         }
     }
