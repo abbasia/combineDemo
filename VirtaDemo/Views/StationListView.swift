@@ -8,15 +8,32 @@
 
 import SwiftUI
 
-struct StationListView: View {
-    let stationsViewModel: StationsViewModel
+struct StationRow: View {
+    var station: Station
+
     var body: some View {
+        Text("\(station.name ?? "no name")")
+    }
+}
+struct StationListView: View {
+    @ObservedObject var  stationsViewModel: StationsViewModel
+    var body: some View {
+        /*
+        List(stationsViewModel.stations) { station in
+               StationRow(station: station)
+           }
+ */
+        
         VStack{
             Text("Station List View")
+            List(stationsViewModel.stations) { station in
+                StationRow(station: station)
+            }
             Button(action: { self.stationsViewModel.appModel.clearToken() }) {
                Text("clear token")
             }.padding(.vertical, 10)
         }
+ 
         
     }
     

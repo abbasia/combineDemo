@@ -7,12 +7,33 @@
 //
 
 import Foundation
-
-final class StationsViewModel
+import Combine
+final class StationsViewModel: ObservableObject
 {
     let appModel:AppModel
+    private var cancellableSet: Set<AnyCancellable> = []
+    @Published var stations = [Station]()
+    
+    func getStations(){
+        Webservice.getStations()
+            .receive(on: RunLoop.main)
+            .map({ (stations)-> [Station] in
+                let arraySlice = stations.prefix(5)
+                return Array(arraySlice)
+            })
+            .sink(receiveCompletion: { print ($0) },
+                receiveValue: {
+                    let items: [Station] = $0
+                    self.stations = $0
+                    print($0.count)
+                    print(self.stations.count)
+                    print(self.stations)
+            })
+            .store(in: &cancellableSet)
+    }
     init(_ appModel: AppModel) {
         self.appModel = appModel
+        self.getStations()
+        
     }
-    
 }

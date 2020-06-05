@@ -15,9 +15,18 @@ struct Webservice {
     static let session:URLSession = URLSession.shared
     static let baseUrl = "https://apitest.virta.fi/v4/"
     static let authUrl = "auth"
+    static let stationsUrl = "stations"
     
-    static func getStations(){
+    static func getStations()-> AnyPublisher<[Station], Error>{
         //Stations endpoint: `GET https://apitest.virta.fi/v4/stations`
+        let url = URL(string: "\(baseUrl)\(stationsUrl)")!
+        let request = URLRequest(url: url)
+        
+        return URLSession.shared
+        .dataTaskPublisher(for: request)
+        .map({ $0.data })
+        .decode(type: [Station].self, decoder: JSONDecoder())
+        .eraseToAnyPublisher()
     }
     
     static func login(email: String, password: String)-> AnyPublisher<Token, Error>{
@@ -35,13 +44,10 @@ struct Webservice {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = postData as Data
 
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
          return URLSession.shared
             .dataTaskPublisher(for: request)
             .map({ $0.data })
-            .decode(type: Token.self, decoder: decoder)
+            .decode(type: Token.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
          
         
@@ -81,6 +87,15 @@ struct LoginData: Codable {
 struct Token: Decodable {
     let token:String?
     let token_type:String?
+}
+
+struct Station: Decodable, Identifiable {
+    let id: Int
+    let latitude: Double
+    let longitude: Double
+    let name: String?
+    let city: String
+    let provider: String
 }
 
 enum APIError: Error {
