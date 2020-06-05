@@ -89,14 +89,6 @@ struct Token: Decodable {
     let token_type:String?
 }
 
-struct Station: Decodable, Identifiable {
-    let id: Int
-    let latitude: Double
-    let longitude: Double
-    let name: String?
-    let city: String
-    let provider: String
-}
 
 enum APIError: Error {
     case invalidBody
