@@ -20,6 +20,7 @@ final class ContentViewModel: ObservableObject {
         
         $isLoggedIn.sink { (loggedIn) in
             print("loggedIn value :\(loggedIn)")
+            print("auth token: \(String(describing: self.appModel.authToken))")
         }.store(in: &cancellableSet)
     }
 }

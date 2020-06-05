@@ -31,6 +31,11 @@ final class AppModel {
         StorageService.saveAuthToken(token: nil)
     }
     
+    func  saveToken(token:Token) {
+        self.authToken = token.token
+        StorageService.saveAuthToken(token: self.authToken)
+    }
+    
     init() {
         self.authToken =  StorageService.retrieveAuthToken()
     }

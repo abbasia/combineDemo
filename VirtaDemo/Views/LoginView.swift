@@ -26,7 +26,7 @@ struct LoginView: View {
             PasswordField(password: $password)
             Divider()
             
-            Button(action: { print("login pressed")}) {
+            Button(action: { self.loginViewModel.login() }) {
                ButtonContent()
             }.padding(.vertical, 10)
                 

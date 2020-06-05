@@ -16,20 +16,23 @@ struct Webservice {
     static let baseUrl = "https://apitest.virta.fi/v4/"
     static let authUrl = "auth"
     
+    static func getStations(){
+        //Stations endpoint: `GET https://apitest.virta.fi/v4/stations`
+    }
+    
     static func login(email: String, password: String)-> AnyPublisher<Token, Error>{
-        //let url = URL(string: "\(baseUrl)\(authUrl)")!
-        let url = URL(string: "https://apitest.virta.fi/v4/auth")!
+        let url = URL(string: "\(baseUrl)\(authUrl)")!
+
         let encoder = JSONEncoder()
         
         let loginData = LoginData(email: email, code: password)
         guard let postData = try? encoder.encode(loginData) else {
-            fatalError("encoding errro: \(loginData)")
+            fatalError("encoding error: \(loginData)")
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = postData as Data
 
         let decoder = JSONDecoder()
