@@ -10,19 +10,15 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    let contentViewModel = ContentViewModel()
+    @ObservedObject var contentViewModel = ContentViewModel()
     var body: some View {
         Group {
-            LoginView()
-            /*
-            if demoModel.isLoggedIn {
-                StationListView()
+            if contentViewModel.isLoggedIn {
+                StationListView(contentViewModel.appModel)
             } else {
-                LoginView()
+                LoginView(contentViewModel.appModel)
             }
- */
         }
-        
     }
     
 }

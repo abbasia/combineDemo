@@ -12,6 +12,7 @@ let titleColor = Color(red: 47/255, green: 70/255, blue: 90/255)
 
 struct LoginView: View {
     
+    let loginViewModel: LoginViewModel
     @State var username = ""
     @State var password = ""
     
@@ -31,6 +32,9 @@ struct LoginView: View {
                 
             Spacer()
         }
+    }
+    init(_ appModel:AppModel){
+        loginViewModel = LoginViewModel( appModel)
     }
 }
 

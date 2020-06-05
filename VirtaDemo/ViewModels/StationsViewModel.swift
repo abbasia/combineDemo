@@ -10,5 +10,9 @@ import Foundation
 
 final class StationsViewModel
 {
+    let appModel:AppModel
+    init(_ appModel: AppModel) {
+        self.appModel = appModel
+    }
     
 }

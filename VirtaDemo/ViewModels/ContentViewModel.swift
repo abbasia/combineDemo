@@ -7,7 +7,20 @@
 //
 
 import Foundation
-final class ContentViewModel {
-    let appModel = AppModel()
+import Combine
+final class ContentViewModel: ObservableObject {
+    var appModel = AppModel()
+    private var cancellableSet: Set<AnyCancellable> = []
+    @Published var isLoggedIn = false
+    
+    init() {
+        appModel.isLoggedInPublisher.receive(on: RunLoop.main)
+        .assign(to: \.isLoggedIn, on: self)
+        .store(in: &cancellableSet)
+        
+        $isLoggedIn.sink { (loggedIn) in
+            print("loggedIn value :\(loggedIn)")
+        }.store(in: &cancellableSet)
+    }
 }
 

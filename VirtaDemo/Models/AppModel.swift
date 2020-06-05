@@ -10,13 +10,14 @@ import Foundation
 import Combine
 
 typealias ValidationPublisher = AnyPublisher<Bool,Never>
-final class AppModel: ObservableObject {
+
+final class AppModel {
     @Published var authToken:String? = nil
     @Published var isLoggedIn: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    private var checkTokenPublisher: ValidationPublisher {
+    var isLoggedInPublisher: ValidationPublisher {
         $authToken.map { (token) -> Bool in
             if token != nil  {
                 return true
@@ -31,11 +32,6 @@ final class AppModel: ObservableObject {
     }
     
     init() {
-        checkTokenPublisher
-            .receive(on: RunLoop.main)
-            .assign(to: \.isLoggedIn, on: self)
-            .store(in: &cancellableSet)
-        
         self.authToken =  StorageService.retrieveAuthToken()
     }
     

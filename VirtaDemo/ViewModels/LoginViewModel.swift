@@ -7,4 +7,12 @@
 //
 
 import Foundation
-final class LoginViewModel {}
+final class LoginViewModel {
+    let appModel:AppModel
+    
+    
+    
+    init(_ appModel: AppModel) {
+        self.appModel = appModel
+    }
+}
