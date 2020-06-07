@@ -28,3 +28,26 @@ final class VirtaDemoModel: ObservableObject {
  
     }
 }
+/*
+ .map({ stations-> [Station] in
+     for station in stations {
+         let location = CLLocation(latitude: station.latitude, longitude: station.longitude)
+         let geocoder = CLGeocoder()
+
+         var placemark: CLPlacemark?
+
+         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+           if error != nil {
+             print("something went horribly wrong")
+             print(error)
+           }
+
+           if let placemarks = placemarks {
+             placemark = placemarks.first
+           }
+             print("computed address: \(String(describing: placemark))")
+         }
+     }
+     return stations
+ })
+ */

@@ -18,7 +18,7 @@ struct StationRow: View {
             HStack{
                 VStack{
                     Text("\(station.name ?? "no name")").bold()
-                    Text("\(station.name ?? "no name")")
+                    Text("\(station.city ?? "")")
                 }
             }
         }
@@ -36,7 +36,7 @@ struct StationListView: View {
             Divider()
             
             
-            List(stationsViewModel.stations) { station in
+            List(stationsViewModel.filteredStations) { station in
                 StationRow(station: station).background(Color.clear)
             }
  

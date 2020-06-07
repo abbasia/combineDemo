@@ -12,51 +12,75 @@ import  CoreLocation
 final class StationsViewModel: ObservableObject
 {
     let appModel:AppModel
+    let locationProxy: LocationProxy = LocationProxy()
     private var cancellableSet: Set<AnyCancellable> = []
     @Published var stations = [Station]()
+    @Published var filteredStations = [Station]()
+    @Published var userLocation: CLLocation?
+    let geodecoder = GeoDecoder()
+    
+    var filteredStationsByDistancePublisher: AnyPublisher<([Station]),Never>{
+        Publishers.CombineLatest($stations, $userLocation).map { (stations,userLocation) -> [Station]  in
+            if userLocation != nil {
+                let mapped = stations.map { (station) -> Station in
+                    var s: Station = station
+                    let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
+                    let distanceFromUser = stationLocation.distance(from: userLocation!)
+                    s.distanceFromUser = distanceFromUser
+                    return s
+                }
+                return mapped
+            }
+            return stations
+        }.map({ (stations)  in
+            let sorted = stations.sorted { (s1, s2) in
+                (s1.distanceFromUser ?? 0) < (s2.distanceFromUser ?? 0)
+            }
+            let arraySlice = sorted.prefix(10)
+            return Array(arraySlice)
+        })
+        .eraseToAnyPublisher()
+    }
+    
+    func getUserLocation(){
+        locationProxy.requestAuthorization()
+        locationProxy.startUpdaingLocation()
+    }
     
     func getStations(){
         Webservice.getStations()
             .receive(on: RunLoop.main)
-            .map({ stations-> [Station] in
-                for station in stations {
-                    let location = CLLocation(latitude: station.latitude, longitude: station.longitude)
-                    let geocoder = CLGeocoder()
-
-                    var placemark: CLPlacemark?
-
-                    geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                      if error != nil {
-                        print("something went horribly wrong")
-                        print(error)
-                      }
-
-                      if let placemarks = placemarks {
-                        placemark = placemarks.first
-                      }
-                        print("computed address: \(String(describing: placemark))")
-                    }
-                }
-                return stations
-            })
-            .map({ (stations)-> [Station] in
-                let arraySlice = stations.prefix(5)
-                return Array(arraySlice)
-            })
-            .sink(receiveCompletion: { print ($0) },
+            .sink(receiveCompletion: { _ in  },
                 receiveValue: {
-                    //let items: [Station] = $0
                     self.stations = $0
-                    //print($0.count)
-                    //print(self.stations.count)
-                    //print(self.stations)
+                    self.getUserLocation()
             })
             
             .store(in: &cancellableSet)
     }
     init(_ appModel: AppModel) {
         self.appModel = appModel
-        self.getStations()
+        self.subscribeToLocationProxy()
+        self.subscribeToFilteredStationsByDistancePublisher()
         
+        self.getStations()
+    }
+    
+    func subscribeToLocationProxy() {
+        locationProxy
+        .$location
+        .compactMap{$0}
+        .assign(to: \.userLocation, on: self)
+        .store(in: &cancellableSet)
+    }
+    
+    func subscribeToFilteredStationsByDistancePublisher(){
+        filteredStationsByDistancePublisher
+            .assign(to: \.filteredStations, on: self)
+            .store(in: &cancellableSet)
+        
+        $filteredStations.sink { (stations) in
+            self.geodecoder.startDecoding(stations: stations)
+        }.store(in: &cancellableSet)
     }
 }

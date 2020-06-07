@@ -19,34 +19,7 @@ struct Station: Decodable, Identifiable {
     let name: String?
     let city: String
     let provider: String
-    /*
-    private var cancellableSet: Set<AnyCancellable> = []
-    var address:String {
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        
-        print("location:")
-        print(latitude)
-        print(longitude)
-        print(location)
-        let geocoder = CLGeocoder()
-
-        var placemark: CLPlacemark?
-
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-          if error != nil {
-            print("something went horribly wrong")
-          }
-
-          if let placemarks = placemarks {
-            placemark = placemarks.first
-          }
-            print("computed address: \(String(describing: placemark))")
-        }
-        
-
-        return "address here"
-    }
- */
+    var distanceFromUser:Double? = 0
 }
 
 
