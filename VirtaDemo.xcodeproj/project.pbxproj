@@ -13,7 +13,6 @@
 		157AC315248704B400EDAEC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157AC314248704B400EDAEC1 /* Assets.xcassets */; };
 		157AC318248704B400EDAEC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157AC317248704B400EDAEC1 /* Preview Assets.xcassets */; };
 		157AC31B248704B400EDAEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 157AC319248704B400EDAEC1 /* LaunchScreen.storyboard */; };
-		157AC32724870A5600EDAEC1 /* VirtaDemoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC32624870A5600EDAEC1 /* VirtaDemoModel.swift */; };
 		157AC32B2487244500EDAEC1 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC32A2487244500EDAEC1 /* Storage.swift */; };
 		157AC32D248728BB00EDAEC1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC32C248728BB00EDAEC1 /* LoginView.swift */; };
 		157AC3302487381D00EDAEC1 /* StationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC32F2487381D00EDAEC1 /* StationListView.swift */; };
@@ -25,6 +24,15 @@
 		157AC33F248B0E8200EDAEC1 /* LocationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC33E248B0E8200EDAEC1 /* LocationProxy.swift */; };
 		157AC341248B486200EDAEC1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC340248B486100EDAEC1 /* Extensions.swift */; };
 		157AC343248C846000EDAEC1 /* GeoDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC342248C846000EDAEC1 /* GeoDecoder.swift */; };
+		157AC347248D7B7800EDAEC1 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157AC346248D7B7800EDAEC1 /* Station.swift */; };
+		15ECC262248E6B5C00A24CC8 /* StationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC261248E6B5C00A24CC8 /* StationRowViewModel.swift */; };
+		15ECC264248E757F00A24CC8 /* ConnectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC263248E757F00A24CC8 /* ConnectorViewModel.swift */; };
+		15ECC267248ED70D00A24CC8 /* StationRowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC266248ED70D00A24CC8 /* StationRowHeader.swift */; };
+		15ECC269248ED7A800A24CC8 /* ConnectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC268248ED7A800A24CC8 /* ConnectorView.swift */; };
+		15ECC26B248ED7DD00A24CC8 /* ConnectorHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC26A248ED7DD00A24CC8 /* ConnectorHStack.swift */; };
+		15ECC26D248ED80900A24CC8 /* StationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC26C248ED80900A24CC8 /* StationRow.swift */; };
+		15ECC274248EEA9500A24CC8 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC273248EEA9500A24CC8 /* StationDetailView.swift */; };
+		15ECC276248EF73900A24CC8 /* StationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECC275248EF73900A24CC8 /* StationDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +44,6 @@
 		157AC317248704B400EDAEC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		157AC31A248704B400EDAEC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		157AC31C248704B400EDAEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		157AC32624870A5600EDAEC1 /* VirtaDemoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtaDemoModel.swift; sourceTree = "<group>"; };
 		157AC32A2487244500EDAEC1 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		157AC32C248728BB00EDAEC1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		157AC32F2487381D00EDAEC1 /* StationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListView.swift; sourceTree = "<group>"; };
@@ -48,6 +55,15 @@
 		157AC33E248B0E8200EDAEC1 /* LocationProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProxy.swift; sourceTree = "<group>"; };
 		157AC340248B486100EDAEC1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		157AC342248C846000EDAEC1 /* GeoDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDecoder.swift; sourceTree = "<group>"; };
+		157AC346248D7B7800EDAEC1 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		15ECC261248E6B5C00A24CC8 /* StationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRowViewModel.swift; sourceTree = "<group>"; };
+		15ECC263248E757F00A24CC8 /* ConnectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorViewModel.swift; sourceTree = "<group>"; };
+		15ECC266248ED70D00A24CC8 /* StationRowHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRowHeader.swift; sourceTree = "<group>"; };
+		15ECC268248ED7A800A24CC8 /* ConnectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorView.swift; sourceTree = "<group>"; };
+		15ECC26A248ED7DD00A24CC8 /* ConnectorHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorHStack.swift; sourceTree = "<group>"; };
+		15ECC26C248ED80900A24CC8 /* StationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRow.swift; sourceTree = "<group>"; };
+		15ECC273248EEA9500A24CC8 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
+		15ECC275248EF73900A24CC8 /* StationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +102,6 @@
 				157AC322248704EF00EDAEC1 /* Services */,
 				157AC30E248704AE00EDAEC1 /* AppDelegate.swift */,
 				157AC310248704AE00EDAEC1 /* SceneDelegate.swift */,
-				157AC312248704AE00EDAEC1 /* ContentView.swift */,
 				157AC314248704B400EDAEC1 /* Assets.xcassets */,
 				157AC319248704B400EDAEC1 /* LaunchScreen.storyboard */,
 				157AC31C248704B400EDAEC1 /* Info.plist */,
@@ -116,10 +131,10 @@
 		157AC32524870A4000EDAEC1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				157AC32624870A5600EDAEC1 /* VirtaDemoModel.swift */,
 				157AC3352489B6BE00EDAEC1 /* AppModel.swift */,
 				157AC33E248B0E8200EDAEC1 /* LocationProxy.swift */,
 				157AC342248C846000EDAEC1 /* GeoDecoder.swift */,
+				157AC346248D7B7800EDAEC1 /* Station.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,8 +142,11 @@
 		157AC32E248728C500EDAEC1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				15ECC265248ED6DA00A24CC8 /* StationListView */,
 				157AC32C248728BB00EDAEC1 /* LoginView.swift */,
 				157AC32F2487381D00EDAEC1 /* StationListView.swift */,
+				157AC312248704AE00EDAEC1 /* ContentView.swift */,
+				15ECC273248EEA9500A24CC8 /* StationDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,8 +157,22 @@
 				157AC3382489B8F200EDAEC1 /* ContentViewModel.swift */,
 				157AC33A2489B8FE00EDAEC1 /* LoginViewModel.swift */,
 				157AC33C2489B91000EDAEC1 /* StationsViewModel.swift */,
+				15ECC261248E6B5C00A24CC8 /* StationRowViewModel.swift */,
+				15ECC263248E757F00A24CC8 /* ConnectorViewModel.swift */,
+				15ECC275248EF73900A24CC8 /* StationDetailViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		15ECC265248ED6DA00A24CC8 /* StationListView */ = {
+			isa = PBXGroup;
+			children = (
+				15ECC266248ED70D00A24CC8 /* StationRowHeader.swift */,
+				15ECC268248ED7A800A24CC8 /* ConnectorView.swift */,
+				15ECC26A248ED7DD00A24CC8 /* ConnectorHStack.swift */,
+				15ECC26C248ED80900A24CC8 /* StationRow.swift */,
+			);
+			path = StationListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,19 +247,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				157AC343248C846000EDAEC1 /* GeoDecoder.swift in Sources */,
+				15ECC264248E757F00A24CC8 /* ConnectorViewModel.swift in Sources */,
 				157AC32D248728BB00EDAEC1 /* LoginView.swift in Sources */,
+				15ECC269248ED7A800A24CC8 /* ConnectorView.swift in Sources */,
 				157AC32B2487244500EDAEC1 /* Storage.swift in Sources */,
 				157AC33B2489B8FE00EDAEC1 /* LoginViewModel.swift in Sources */,
+				15ECC262248E6B5C00A24CC8 /* StationRowViewModel.swift in Sources */,
 				157AC33D2489B91000EDAEC1 /* StationsViewModel.swift in Sources */,
 				157AC334248801C900EDAEC1 /* Webservice.swift in Sources */,
+				15ECC274248EEA9500A24CC8 /* StationDetailView.swift in Sources */,
 				157AC30F248704AE00EDAEC1 /* AppDelegate.swift in Sources */,
+				15ECC26D248ED80900A24CC8 /* StationRow.swift in Sources */,
 				157AC3392489B8F200EDAEC1 /* ContentViewModel.swift in Sources */,
 				157AC33F248B0E8200EDAEC1 /* LocationProxy.swift in Sources */,
+				15ECC267248ED70D00A24CC8 /* StationRowHeader.swift in Sources */,
+				15ECC276248EF73900A24CC8 /* StationDetailViewModel.swift in Sources */,
 				157AC3362489B6BE00EDAEC1 /* AppModel.swift in Sources */,
 				157AC311248704AE00EDAEC1 /* SceneDelegate.swift in Sources */,
 				157AC3302487381D00EDAEC1 /* StationListView.swift in Sources */,
-				157AC32724870A5600EDAEC1 /* VirtaDemoModel.swift in Sources */,
+				15ECC26B248ED7DD00A24CC8 /* ConnectorHStack.swift in Sources */,
 				157AC313248704AE00EDAEC1 /* ContentView.swift in Sources */,
+				157AC347248D7B7800EDAEC1 /* Station.swift in Sources */,
 				157AC341248B486200EDAEC1 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

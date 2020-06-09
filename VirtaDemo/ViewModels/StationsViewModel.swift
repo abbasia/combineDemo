@@ -11,6 +11,10 @@ import Combine
 import  CoreLocation
 final class StationsViewModel: ObservableObject
 {
+    
+    let sequencialQueue = DispatchQueue(label: "placemark.concurrent.queue" , qos: .background)
+    let geocoder = CLGeocoder()
+    
     let appModel:AppModel
     let locationProxy: LocationProxy = LocationProxy()
     private var cancellableSet: Set<AnyCancellable> = []
@@ -19,11 +23,13 @@ final class StationsViewModel: ObservableObject
     @Published var userLocation: CLLocation?
     let geodecoder = GeoDecoder()
     
+    @Published var refresh:Bool = false
+    
     var filteredStationsByDistancePublisher: AnyPublisher<([Station]),Never>{
         Publishers.CombineLatest($stations, $userLocation).map { (stations,userLocation) -> [Station]  in
             if userLocation != nil {
                 let mapped = stations.map { (station) -> Station in
-                    var s: Station = station
+                    let s: Station = station
                     let stationLocation = CLLocation(latitude: station.latitude, longitude: station.longitude)
                     let distanceFromUser = stationLocation.distance(from: userLocation!)
                     s.distanceFromUser = distanceFromUser
@@ -39,7 +45,7 @@ final class StationsViewModel: ObservableObject
             let arraySlice = sorted.prefix(10)
             return Array(arraySlice)
         })
-        .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }
     
     func getUserLocation(){
@@ -50,12 +56,12 @@ final class StationsViewModel: ObservableObject
     func getStations(){
         Webservice.getStations()
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { _ in  },
-                receiveValue: {
+            .sink(receiveCompletion: { (error) in
+                print("station request failed: \(String(describing: error))")  },
+                  receiveValue: {
                     self.stations = $0
                     self.getUserLocation()
             })
-            
             .store(in: &cancellableSet)
     }
     init(_ appModel: AppModel) {
@@ -68,10 +74,10 @@ final class StationsViewModel: ObservableObject
     
     func subscribeToLocationProxy() {
         locationProxy
-        .$location
-        .compactMap{$0}
-        .assign(to: \.userLocation, on: self)
-        .store(in: &cancellableSet)
+            .$location
+            .compactMap{$0}
+            .assign(to: \.userLocation, on: self)
+            .store(in: &cancellableSet)
     }
     
     func subscribeToFilteredStationsByDistancePublisher(){
@@ -81,6 +87,12 @@ final class StationsViewModel: ObservableObject
         
         $filteredStations.sink { (stations) in
             self.geodecoder.startDecoding(stations: stations)
-        }.store(in: &cancellableSet)
+        }
+        .store(in: &cancellableSet)
+        
+        
     }
+    
+    
+    
 }

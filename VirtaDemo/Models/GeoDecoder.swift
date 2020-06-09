@@ -20,20 +20,23 @@ class GeoDecoder {
     }
     func startDecoding(stations:[Station]) {
         self.stations = stations
-        let locations = stations.map { (station) -> CLLocation in
-            CLLocation(latitude: station.latitude, longitude: station.longitude)
-        }
         
-        Publishers.Sequence(sequence: locations).flatMap(maxPublishers: .max(1)) { (location)  in
-            self.geocoder.reverseGeocodeLocationPublisher(location)
+        Publishers.Sequence(sequence: stations)
+            .subscribe(on: DispatchQueue.global())
+            .flatMap(maxPublishers: .max(1)) { (station)  in
+            self.geocoder.reverseGeocodeLocationPublisher(station)
         }
-        .eraseToAnyPublisher()
+        .receive(on: DispatchQueue.main)
         .sink(receiveCompletion: { completion in
-            print("done")
-        }) { (placemark) in
-            print("placemark:", placemark.makeAddressString())
+            
+        }) { (station,address) in
+            station.address = address
+            station.addressReady = true
         }.store(in: &cancellableSet)
+        
+        
          
     }
     
 }
+

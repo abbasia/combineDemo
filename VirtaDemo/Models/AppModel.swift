@@ -12,19 +12,6 @@ import CoreLocation
 
 typealias ValidationPublisher = AnyPublisher<Bool,Never>
 
-struct Station: Decodable, Identifiable {
-    let id: Int
-    let latitude: Double
-    let longitude: Double
-    let name: String?
-    let city: String
-    let provider: String
-    var distanceFromUser:Double? = 0
-}
-
-
-
-
 final class AppModel {
     @Published var authToken:String? = nil
     @Published var isLoggedIn: Bool = false

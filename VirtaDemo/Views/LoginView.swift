@@ -7,98 +7,113 @@
 //
 
 import SwiftUI
-
-let titleColor = Color(red: 47/255, green: 70/255, blue: 90/255)
-
+import Combine
 struct LoginView: View {
     
-    let loginViewModel: LoginViewModel
-    @State var username = ""
-    @State var password = ""
+    @ObservedObject var viewModel: LoginViewModel
     
     var body: some View {
         VStack{
-            TitleView()
-            HeaderImageView()
+            HeaderView
+            HeaderImageView
             
-            UsernameField(username: $username)
+            NotificationMessage
+            
+            UsernameField
             Divider()
-            PasswordField(password: $password)
+            PasswordField
             Divider()
             
-            Button(action: { self.loginViewModel.login() }) {
-               ButtonContent()
-            }.padding(.vertical, 10)
-                
-            Spacer()
+            LoginButton
+            CorrectCredentialsButton
+            WrongCredentialsButton
+            
+            
         }
     }
-    init(_ appModel:AppModel){
-        loginViewModel = LoginViewModel( appModel)
+    
+    var NotificationMessage: some View {
+        Text(viewModel.notification.message)
+        .font(.headline)
+            .foregroundColor(viewModel.notification.color)
+        .padding()
     }
-}
-
-
-struct TitleView: View {
-    var body: some View {
+    
+    var LoginButton: some View {
+        Button(action: self.viewModel.login) {
+            Text("Log in")
+            .font(.headline)
+            .foregroundColor(Colors.StationRowTitleColor)
+            .padding()
+            .frame(width: 220, height: 60)
+            .background(Color.yellow)
+            .cornerRadius(5.0)
+        }.padding(.vertical, 10)
+    }
+    
+    var UsernameField:  some View {
+        HStack(alignment: .center){
+            Image("icPerson").padding(.leading, 10)
+            TextField("username", text: $viewModel.username)
+                .frame(height: 35)
+                .autocapitalization(.none)
+                .padding(.trailing,5)
+        }.padding(.vertical, 5)
+        
+    }
+    
+    var PasswordField: some View {
+        HStack(alignment: .center){
+            Image("icLock").padding(.leading, 10)
+            
+            SecureField("password", text: $viewModel.password)
+                .frame(height: 35)
+                .autocapitalization(.none)
+                .padding(.trailing,5)
+        }.padding(.vertical, 5)
+    }
+    
+    var HeaderView: some View {
         Text("Login and Charge!")
             .font(Font.headline)
             .fontWeight(.semibold)
-            .foregroundColor(titleColor)
+            .foregroundColor(Colors.StationRowTitleColor)
             .padding(.top,20)
     }
-}
-
-
-struct HeaderImageView: View {
-    var body: some View {
+    
+    var HeaderImageView: some View {
         Image("login").padding(.vertical,20)
     }
-}
-
-struct UsernameField: View {
-    @Binding var username:String
-    var body: some View {
-        HStack(alignment: .center){
-            Image("icPerson").padding(.leading, 10)
-            TextField("username", text: $username)
-            .frame(height: 35)
-            .autocapitalization(.none)
-            .padding(.trailing,5)
-        }.padding(.vertical, 5)
+    
+    var CorrectCredentialsButton: some View {
+        Button(action: self.viewModel.populateCorrectCredentials) {
+            Text("Populate with correct credentials")
+            .font(.headline)
+            .foregroundColor(Colors.StationRowTitleColor)
+            .padding()
+            .frame( height: 60)
+            .background(Color.yellow)
+            .cornerRadius(5.0)
+        }.padding(.vertical, 10)
+    }
+    
+    var WrongCredentialsButton: some View {
+        Button(action: self.viewModel.populateWrongCredentials) {
+            Text("Populate with wrong credentials")
+            .font(.headline)
+            .foregroundColor(Colors.StationRowTitleColor)
+            .padding()
+            .frame( height: 60)
+            .background(Color.yellow)
+            .cornerRadius(5.0)
+        }.padding(.vertical, 10)
+    }
+    
+    init(_ appModel:AppModel){
+        viewModel = LoginViewModel( appModel)
     }
 }
 
-
-struct PasswordField: View {
-    @Binding var password:String
-    var body: some View {
-        HStack(alignment: .center){
-            Image("icLock").padding(.leading, 10)
-                
-            SecureField("password", text: $password)
-                .frame(height: 35)
-                .autocapitalization(.none)
-
-                  .padding(.trailing,5)
-        }.padding(.vertical, 5)
-    }
-}
-
-
-
-
-struct ButtonContent: View {
-    var body: some View {
-        Text("Log in")
-        .font(.headline)
-        .foregroundColor(titleColor)
-        .padding()
-        .frame(width: 220, height: 60)
-        .background(Color.yellow)
-        .cornerRadius(5.0)
-    }
-}
 
 
 
