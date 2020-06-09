@@ -32,8 +32,8 @@ final class LoginViewModel: ObservableObject {
     
     func login()  {
         
-        Webservice.login(email: "candidate1@virta.global", password: "1Candidate!")
-        //Webservice.login(email: username, password: password)
+        //Webservice.login(email: "candidate1@virta.global", password: "1Candidate!")
+        Webservice.login(email: username, password: password)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { (status) in
                 switch status {
